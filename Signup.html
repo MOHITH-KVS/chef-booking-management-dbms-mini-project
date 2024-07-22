@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="Signup.css">
+</head>
+<body>
+    <section>
+        <div class="imglogin">
+            <img src="./Group 63 (1).png" height="750" width="750" alt="Signup Image"/>
+        </div>
+        <div class="details">
+            <div class="details-form">
+                <h2>Sign Up</h2>
+                <form method="post" action="process_2.php" >
+                    <div class="input-form input-form-inline">
+                        <div class="input-group">
+                            <span>FirstName</span>
+                            <input type="text" name="first_name" required>
+                        </div>
+                        <div class="input-group">
+                            <span>LastName</span>
+                            <input type="text" name="last_name" required>
+                        </div>
+                    </div>
+                    <div class="input-form">
+                        <span>email</span>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="input-form">
+                        <span>password</span>
+                        <input type="password" name="password" required>
+                    </div>
+                    <div class="input-form">
+                        <span>Confirmpassword</span>
+                        <input type="password" name="confirm_password" required>
+                    </div>
+                    <div class="input-form">
+                        <button type="submit" name="save">Sign up</button>
+                    </div>
+                    <div class="input-form">
+                        <p>Already have an account? <a href="login.html">Sign in</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chefinder - Search Results</title>
+    <link rel="stylesheet" href="data.css">
+</head>
+<body>
+    <header>
+        <div class="header">
+            <h1>FIND YOUR CHEFS</h1>
+            <p>"Experience the art of culinary perfection with our chefs."</p>
+        </div>
+    </header>
+    <main>
+        <section class="search-section">
+            <div class="search-again">
+                <form onsubmit="event.preventDefault(); performSearch(document.getElementById('searchBar').value)">
+                    <input type="text" id="searchBar" name="searchTerm" placeholder="Search for suitable chefs..." class="search-input">
+                    <button type="submit" class="find-chief-btn">Search for confirmation</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="results-section">
+            <div id="resultsContainer"></div>
+        </section>
+    </main>
+
+    <!-- Hidden booking form -->
+    <form id="hiddenBookingForm" action="booking.php" method="post" style="display: none;">
+        <input type="hidden" id="hidden_chef_id" name="chef_id">
+        <input type="hidden" id="hidden_chef_name" name="chef_name">
+        <input type="hidden" id="hidden_chef_contact" name="chef_contact">
+        <input type="hidden" id="hidden_user_name" name="user_name">
+        <!-- No need for hidden_user_contact here -->
+    </form>
+
+    <script>
+        function performSearch(searchTerm) {
+            fetch('search.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'search=' + encodeURIComponent(searchTerm),
+            })
+            .then(response => response.json())
+            .then(data => {
+                var resultsContainer = document.getElementById('resultsContainer');
+                resultsContainer.innerHTML = '';
+                if (data.length > 0) {
+                    data.forEach(chef => {
+                        var chefCard = `<div class="chef-card">
+                                            <img src="${chef.Photo}" alt="Chef Image">
+                                            <div class="chef-details">
+                                                <p><strong>Name:</strong> ${chef.Name}</p>
+                                                <p><strong>Chef-ID:</strong> ${chef.Chef_ID}</p>
+                                                <p><strong>Specialist:</strong> ${chef.Specialist}</p>
+                                                <p><strong>Availability:</strong> ${chef.Availability}</p>
+                                                <p><strong>Charges:</strong> ${chef.Charges}</p>
+                                                <p><strong>Contact:</strong> ${chef.Contact_Information}</p>
+                                            </div>
+                                            <button class="book-now" onclick="bookNow(${chef.Chef_ID}, '${chef.Name}', '${chef.Contact_Information}')">Book now</button>
+                                        </div>`;
+                        resultsContainer.innerHTML += chefCard;
+                    });
+                } else {
+                    resultsContainer.innerHTML = '<p>No results found.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                var resultsContainer = document.getElementById('resultsContainer');
+                resultsContainer.innerHTML = '<p>Error fetching data. Please try again later.</p>';
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchTerm = getSearchTerm();
+            if (searchTerm) {
+                document.getElementById('searchBar').value = searchTerm;
+                performSearch(searchTerm);
+            }
+        });
+
+        function getSearchTerm() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('searchTerm');
+        }
+
+        function bookNow(chefId, chefName, chefContact) {
+            var userName = getUserName(); // Ensure getUserName() function is implemented properly
+
+            // Set hidden form values
+            document.getElementById('hidden_chef_id').value = chefId;
+            document.getElementById('hidden_chef_name').value = chefName;
+            document.getElementById('hidden_chef_contact').value = chefContact;
+            document.getElementById('hidden_user_name').value = userName;
+
+            // Submit the form
+            document.getElementById('hiddenBookingForm').submit();
+        }
+
+        function getUserName() {
+            // Implement this function to retrieve the username from your session or local storage
+            // Example using localStorage:
+            return localStorage.getItem('user_name') || '';
+        }
+        function bookNow(chefId, chefName, chefContact) {
+    var userName = getUserName(); // Ensure getUserName() function is implemented properly
+
+    // Prompt the user for confirmation
+    var confirmation = confirm(`Are you sure you want to book Chef ${chefName}?`);
+
+    if (confirmation) {
+        // Set hidden form values
+        document.getElementById('hidden_chef_id').value = chefId;
+        document.getElementById('hidden_chef_name').value = chefName;
+        document.getElementById('hidden_chef_contact').value = chefContact;
+        document.getElementById('hidden_user_name').value = userName;
+
+        // Submit the form
+        document.getElementById('hiddenBookingForm').submit();
+    } else {
+        // Do nothing or provide feedback to the user
+        console.log('Booking canceled by user.');
+    }
+}
+
+    </script>
+</body>
+</html>

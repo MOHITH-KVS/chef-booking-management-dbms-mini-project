@@ -1,0 +1,96 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.confirmation-container {
+    background-color: #083f6b;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    border-radius: 50px 50px 0 0;
+    position: relative;
+    width: 80%;
+    height: 500px;
+    max-width: 800px;
+    overflow: hidden;
+}
+
+.confirmation-container h1 {
+    padding: 50px;
+    font-size: 36px;
+    padding-top: 100px;
+}
+
+.confirmation-container h1 span {
+    color: #00d1a1;
+}
+
+.confirmation-container h2 {
+    margin: 20px 0 10px;
+    font-size: 48px;
+    color: #00d1a1;
+}
+
+.confirmation-container p {
+    margin: 10px 0 0;
+    font-size: 18px;
+}
+
+.chef-animation {
+    position: absolute;
+}
+
+.chef-1 {
+    top: 20px;
+    left: 20px;
+}
+.chef-3{
+    top: 10px;
+    right: 30px;
+}
+.chef-2 {
+    bottom: -30px;
+    right: -20px;
+}
+.chef-4{
+    bottom: -15px;
+}
+
+.chef-1 img {
+    height: 260px;
+    animation: float 4s ease-in-out infinite;
+}
+
+.chef-2 img {
+    height: 350px;
+    animation: float 5s ease-in-out infinite;
+}
+
+.chef-3 img {
+    height: 225px;
+    animation: float 3s ease-in-out infinite;
+
+}
+
+.chef-4 img {
+    height: 250px;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}

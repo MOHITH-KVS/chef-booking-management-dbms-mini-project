@@ -1,0 +1,113 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e8e8e8;
+}
+
+.premium-chefs {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(to bottom, #fafafa, #d4d4d4);
+}
+
+.header {
+    background-color: #083f6b;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 36px;
+    letter-spacing: 2px;
+    padding-left: 650px;
+}
+
+.header p {
+    margin: 10px 0 0;
+    font-style: italic;
+    font-size: 18px;
+    padding-left: 300px;
+}
+
+.chef-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.chef-card {
+    background-color: white;
+    border: 2px solid #083f6b;
+    border-radius: 15px;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+    margin: 20px;
+    width: 350px;
+    text-align: left;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.chef-card:hover {
+    transform: scale(1.05);
+}
+
+.chef-card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #083f6b;
+}
+
+.chef-details {
+    padding: 20px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.chef-details :hover{
+    background-color: #00d1a1;
+}
+
+.chef-details p {
+    margin: 10px 0;
+    color: #333;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.chef-details p strong {
+    color: #083f6b;
+    font-weight: 700;
+}
+
+.book-now {
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    background-color: #083f6b;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease-in-out;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.book-now a{
+    color: white;
+}
+
+.book-now:hover {
+    background-color: #00d1a1;
+    color: white;
+}
